@@ -11,10 +11,10 @@ dbConnection.connect((err) => {
 const mysql = require('mysql');
 
 const connection = mysql.createConnection({
-  host: 'sql.freedb.tech',
-  user: 'freedb_matiasblobs',
-  password: 'An*Hm$?uVY4z92U',
-  database: 'freedb_testeonode'
+  host: 'srv951.hstgr.io',
+  user: 'u236440595_nodetest',
+  password: 'Charlotte@4411',
+  database: 'u236440595_nodetest'
 });
 
 connection.connect((err) => {
