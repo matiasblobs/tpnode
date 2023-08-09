@@ -7,6 +7,7 @@ module.exports = ()=>{
         user: 'freedb_matiasblobs',
         insecureAuth : true,
         password: 'An*Hm$?uVY4z92U',
-        database: 'freedb_testeonode'
+        database: 'freedb_testeonode',
+        port: 3306
     });
 } 
