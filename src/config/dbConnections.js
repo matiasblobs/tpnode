@@ -3,10 +3,10 @@ const mysql=require('mysql');
 
 module.exports = ()=>{
     return mysql.createConnection({
-        host: 'mysql21slv.linux.backend',
-        user: 'o6000803_tpnode',
+        host: 'sql.freedb.tech',
+        user: 'freedb_matiasblobs',
         insecureAuth : true,
-        password: 'seweGUbi27',
-        database: 'o6000803_tpnode'
+        password: 'An*Hm$?uVY4z92U',
+        database: 'freedb_testeonode'
     });
 } 
