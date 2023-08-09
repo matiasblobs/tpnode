@@ -1,5 +1,5 @@
 // Hacemos la coneccion con la base de datos
-const dbConnection=require('../../config/dbConnections');
+/* const dbConnection=require('../../config/dbConnections');
 
 dbConnection.connect((err) => {
   if (err) {
@@ -7,8 +7,23 @@ dbConnection.connect((err) => {
     return;
   }
   console.log('Connected to database!');
+}); */
+const mysql = require('mysql');
+
+const connection = mysql.createConnection({
+  host: 'sql.freedb.tech',
+  user: 'freedb_matiasblobs',
+  password: 'An*Hm$?uVY4z92U',
+  database: 'freedb_testeonode'
 });
 
+connection.connect((err) => {
+  if (err) {
+    console.error('Error connecting to database:', err);
+    return;
+  }
+  console.log('Connected to database!');
+});
 
 
 
