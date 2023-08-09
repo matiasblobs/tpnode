@@ -32,7 +32,8 @@ module.exports = app=>{
 
 
 
-    const conexion=dbConnection();
+   // const conexion=dbConnection();
+  const conexion=connection;
 
     // RUTAS
 
