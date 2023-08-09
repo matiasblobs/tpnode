@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Libros</title>
+    <%- include('t-dependencias-head') %>
+    
+</head>
+<body>
+    <%- include('t-navegador') %>
+    <div class="container encabezado mt-5 mb-5">
+        <div  style="display: flex; gap: 2rem;">
+           
+                <h1>Libros</h1>
+
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalAgregar">
+                    <i class="bi bi-plus-circle-fill"></i>
+                Nuevo
+                </button>           
+        </div>     
+    </div>
+    <hr />
+    
+
+
+<!-- MODAL: AGREGAR NUEVO -->
+<div class="modal fade" id="modalAgregar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Agregar nuevo libro</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form method="POST" action="/libro-agregar" id="formulario-agregar">
+                
+                <div class="form-group">   
+                                 
+                    <label for="titulo">Titulo</label>
+                    <input name="titulo" class="form-control" type="text"><br>
+
+                    <label for="isbn">ISBN</label>
+                    <input name="isbn" class="form-control" type="text"><br>
+                    
+
+                    <label for="resena">Reseña</label>
+                    <textarea name="resena" cols="30" rows="4" class="form-control"></textarea>
+                    <br>
+
+
+                    <label for="autor">Autor</label>
+                    <div style="display: flex; gap: 20px;">                        
+                        <select name="autor" class="form-control">
+                            <option value=""></option>
+                            <% autores.forEach(autor => { %>
+                                <option value="<%= autor.id_autor %>"><%= autor.nombre + ' ' + autor.apellido %></option>                         
+                            <% }); %> 
+                        </select>
+                        <a href="/autores" class="btn btn-primary">+</a>
+                    </div>
+                    <br>
+
+                    <label for="generoliterario">Genero Literario</label>
+                    <div style="display: flex; gap: 20px;">                        
+                        <select name="generoliterario" class="form-control">
+                            <option value=""></option>
+                            <% generosliterarios.forEach(item => { %>
+                                <option value="<%= item.id_generoliterario %>"><%= item.nombre  %></option>                         
+                            <% }); %> 
+                        </select>
+                        <a href="/generosliterarios" class="btn btn-primary">+</a>
+                    </div>
+                    <br>                
+
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button class="btn btn-primary" type="submit">Registrar</button>
+                </div>
+            </form>
+        </div>
+      </div>
+    </div>
+</div>
+
+
+<!--   MODAL EDITAR -->
+
+<div class="modal fade" id="modalEditar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Editar Libro</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form method="POST" action="/libro-editar" id="formulario-editar">
+                <input type="hidden" name="id" value="" id="formulario-editar-id">
+
+                <div class="form-group">          
+                         
+                <label for="titulo">Titulo</label>
+                <input name="titulo" class="form-control" type="text" id="formulario-editar-titulo"><br>
+
+                <label for="isbn">ISBN</label>
+                <input name="isbn" class="form-control" type="text" id="formulario-editar-isbn"><br>                    
+
+                <label for="resena">Reseña</label>
+                <textarea name="resena" cols="30" rows="4" class="form-control" id="formulario-editar-resena"></textarea>
+                <br>
+
+                <label for="autor">Autor</label>
+                    <div style="display: flex; gap: 20px;">                        
+                        <select name="autor" class="form-control" id="formulario-editar-autor">
+                            <option value=""></option>
+                            <% autores.forEach(autor => { %>
+                                <option value="<%= autor.id_autor %>"><%= autor.nombre + ' ' + autor.apellido %></option>                         
+                            <% }); %> 
+                        </select>
+                        <a href="/autores" class="btn btn-primary">+</a>
+                    </div>
+                    <br>
+
+                <label for="generoliterario">Genero Literario</label>
+                <div style="display: flex; gap: 20px;">                        
+                    <select name="generoliterario" class="form-control" id="formulario-editar-genero">
+                        <option value=""></option>
+                        <% generosliterarios.forEach(item => { %>
+                            <option value="<%= item.id_generoliterario %>"><%= item.nombre  %></option>                         
+                        <% }); %> 
+                    </select>
+                    <a href="/generosliterarios" class="btn btn-primary">+</a>
+                </div>
+                <br>   
+                
+
+                
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button class="btn btn-primary" type="submit">Editar</button>
+                </div>
+            </form>
+        </div>
+   
+      </div>
+    </div>
+</div> 
+
+
+
+
+<!-- PRINCIPAL -->
+ 
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div >
+
+            <h3 class="bg-dark text-white px-4 py-2">Listado de libros</h3>
+
+            <div class="caja-libros">
+                <% for (let i = 0; i < libros.length; i++) { %>             
+                        
+                        <%     
+                            var idlibro = libros[i].id_libro;
+                            var isbn = libros[i].isbn;  
+                            var titulo = libros[i].titulo;    
+                            var resena = libros[i].resena;    
+                            var idautor = libros[i].autor;    
+                            var idgenero = libros[i].genero;    
+
+                             var autorencurso = autores.find(autor => autor.id_autor === idautor);
+                            var nombreapellido = autorencurso.nombre + ', ' + autorencurso.apellido ;
+
+                            var generoencurso = generosliterarios.find(genero => genero.id_generoliterario === idgenero);
+                            var generoliterario = generoencurso.nombre;                         
+ 
+                        %>
+                    
+                        <div class="libro">
+                        <div class="libro-titulo">
+                            <h3><strong><%= titulo %></strong></h3>
+                        </div>
+
+                        <div class="libro-detalle">
+                            <p class="pequeno text-primary">Genero: <%= generoliterario %></p>
+                            <p><%= resena %></p>
+                            <p class="pequeno"><strong><%= nombreapellido %></strong> </p>
+                            <hr>
+                            <p class="pequeno">ISBS: <%= isbn %></p>                          
+
+                        </div>
+
+                        <div class="libro-botones">
+                            <a href="/libro-borrar/<%= idlibro %>">
+                                <button type="button" class="btn btn-danger">
+                                    <i class="bi bi-trash"></i>
+                                </button></a>
+
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalEditar" onclick="formularioeditar('<%= idlibro %>', '<%= titulo %>', '<%= isbn %>', '<%= resena %>', '<%= idautor %>' , '<%= idgenero %>')">
+                                    <i class="bi bi-pencil"></i>
+                                </button>
+                        
+                        </div>
+                    </div>
+
+                    
+                <% } %>  
+
+
+            </div>
+
+           
+              
+        </div>
+    </div>
+</div>
+      
+
+<!-- SCRIPTS -->
+<%- include('t-dependencias-footer') %>
+
+<!-- SCRIPTS -->      
+<script>
+    
+        var editarFormulario = document.getElementById('formulario-editar');
+        var editarCampoId = document.getElementById('formulario-editar-id');
+        var editarCampoTitulo = document.getElementById('formulario-editar-titulo');
+        var editarCampoIsbn = document.getElementById('formulario-editar-isbn');
+        var editarCampoResena = document.getElementById('formulario-editar-resena');
+        var editarCampoAutor = document.getElementById('formulario-editar-autor');
+        var editarCampoGenero = document.getElementById('formulario-editar-genero');
+        
+        function formularioeditar(id, titulo, isbn, resena, autor, genero){
+             editarCampoId.value = id;
+             editarCampoTitulo.value = titulo;
+            editarCampoIsbn.value = isbn;    
+            editarCampoResena.value = resena;   
+            editarCampoAutor.value = autor; 
+            editarCampoGenero.value = genero;      
+            
+        };
+</script>
+    
+</body>
+</html>
