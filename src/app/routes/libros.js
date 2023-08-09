@@ -1,29 +1,8 @@
 // Hacemos la coneccion con la base de datos
-/* const dbConnection=require('../../config/dbConnections');
+const dbConnection=require('../../config/dbConnections');
 
-dbConnection.connect((err) => {
-  if (err) {
-    console.error('Error connecting to database:', err);
-    return;
-  }
-  console.log('Connected to database!');
-}); */
-const mysql = require('mysql');
 
-const connection = mysql.createConnection({
-  host: 'srv951.hstgr.io',
-  user: 'u236440595_nodetest',
-  password: 'Charlotte@4411',
-  database: 'u236440595_nodetest'
-});
 
-connection.connect((err) => {
-  if (err) {
-    console.error('Error connecting to database:', err);
-    return;
-  }
-  console.log('Connected to database!');
-});
 
 
 
@@ -32,8 +11,8 @@ module.exports = app=>{
 
 
 
-   // const conexion=dbConnection();
-  const conexion=connection;
+ const conexion=dbConnection();
+  
 
     // RUTAS
 
