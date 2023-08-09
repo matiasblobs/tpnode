@@ -3,7 +3,7 @@ const mysql=require('mysql');
 
 module.exports = ()=>{
     return mysql.createConnection({
-        host: '200.58.112.219',
+        host: 'mysql21slv.linux.backend',
         user: 'o6000803_tpnode',
         insecureAuth : true,
         password: 'seweGUbi27',
