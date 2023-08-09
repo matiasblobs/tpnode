@@ -116,7 +116,9 @@ module.exports = app=>{
     // Cargos
 
     app.get('/cargos', (req,res)=>{
+        console.log('hola cargos');
         conexion.query('SELECT * FROM cargos', (err, result)=>{
+            console.log(result);
             res.render('cargos.ejs', {
                 cargos: result
             });
