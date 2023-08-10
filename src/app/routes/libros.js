@@ -2,14 +2,8 @@
 const dbConnection=require('../../config/dbConnections');
 
 
-
-
-
-
 // Armamos nuestras rutas
 module.exports = app=>{
-
-
 
  const conexion=dbConnection();
   
@@ -99,6 +93,8 @@ module.exports = app=>{
             }
         }) 
     });
+
+  // Esta ruta GetData está en desuso, no la borré porque todavía estoy investigando, me sirve para armar un campo de formulario con autocompletar (cómo una Google Search) pero no terminé de resolverlo
     
     app.get('/get_data', function(request, response, next){
         var search_query = request.query.search_query;
@@ -405,7 +401,7 @@ module.exports = app=>{
     });
 
 
-    // EXTENSIONES
+    // EXTENSIONES. Este modulo de extensiones para manejar las extensiones de prestamos no está incluido en esta entrega, está para completar a futuro cómo modulos complementarios
 
     app.get('/extensiones', (req,res)=>{
         conexion.query('SELECT * FROM extensiones', (err, result)=>{
