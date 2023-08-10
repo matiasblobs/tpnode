@@ -18,7 +18,7 @@ app.set('views', path.join(__dirname, '../app/views')); // arma las rutas, conca
 // MiddleWare
 app.use(bodyParser.urlencoded({extended:false})); // activa el BodyParser, facilita la comunicacion entre el HTML y NodeJS
 
-app.use(express.static('public')); 
+app.use(express.static('public')); // Esta línea nos ayuda a conectar la carpeta Public que es dónde guardamos nuestra hoja de CSS propia
 
 
 
