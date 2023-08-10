@@ -1,5 +1,6 @@
 const mysql=require('mysql');
 
+// Este codigo me conecta con una base de datos externa que tengo alojada en un servidor Hostinger
 
 module.exports = ()=>{
     return mysql.createConnection({
