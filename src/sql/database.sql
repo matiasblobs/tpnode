@@ -1,5 +1,10 @@
+
+
 CREATE DATABASE libreria03;
 USE libreria03;
+/* este nombre se usó para la prueba, en el deploy ya tiene otro nombre */
+
+
 
 /* LITERATURA */
 
@@ -14,7 +19,6 @@ CREATE TABLE libros(
 );
 
 
-
 CREATE TABLE autores(
     id_autor INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     nombre VARCHAR (50),
@@ -23,11 +27,13 @@ CREATE TABLE autores(
 
 
 
+
 CREATE TABLE ejemplares(
     id_ejemplar INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     estado VARCHAR (500),
     enprestamo BOOLEAN
 );
+/* tabla reservada para modulos futuros */
 
 
 
@@ -43,14 +49,15 @@ CREATE TABLE subgeneros(
     id_generoliterario INT,
     nombre VARCHAR (50)
 );
+/* tabla reservada para modulos futuros */
 
 
     /* Le damos un valor inicial */
-    INSERT INTO libros(isbn, titulo, resena, autor, genero, subgenero) values('', '', '', '', '', '');
+    /* INSERT INTO libros(isbn, titulo, resena, autor, genero, subgenero) values('', '', '', '', '', '');
     INSERT INTO autores(nombre, apellido) values('', '');
     INSERT INTO ejemplares(estado, enprestamo) values('', false);
     INSERT INTO generosliterarios(nombre) values('');
-    INSERT INTO subgeneros(id_generoliterario, nombre) values('', '');
+    INSERT INTO subgeneros(id_generoliterario, nombre) values('', ''); */
 
 /* PERSONAS */
 
@@ -80,9 +87,9 @@ CREATE TABLE cargos(
 );
 
     /* Poblamos */
-    INSERT INTO socios(nombre, apellido, dni, telefono, email, fechanacimiento, fechaalta) values('', '', '', '', '', 0000-00-00, 0000-00-00);
+    /* INSERT INTO socios(nombre, apellido, dni, telefono, email, fechanacimiento, fechaalta) values('', '', '', '', '', 0000-00-00, 0000-00-00);
     INSERT INTO empleados(nombre, apellido, cargo) values('', '', '');
-    INSERT INTO cargos(cargo) values('');
+    INSERT INTO cargos(cargo) values(''); */
 
 /* EVENTOS */
 
@@ -101,10 +108,14 @@ CREATE TABLE extensiones(
     extension VARCHAR (50),
     plazo INT
 );
+/* tabla reservada para modulos futuros */
 
     /* poblamos */
-    INSERT INTO prestamos(id_libro, id_ejemplar, id_socio, fecharetiro, id_extension) values('', '', '', 0000-00-00, '');
-    INSERT INTO extensiones(extension, plazo) values('', 0);
+    /* INSERT INTO prestamos(id_libro, id_ejemplar, id_socio, fecharetiro, id_extension) values('', '', '', 0000-00-00, '');
+    INSERT INTO extensiones(extension, plazo) values('', 0); */
+
+
+/* Ver archivo foreign_keys.sql para ver como se definieron las foreign keys */
 
 
 

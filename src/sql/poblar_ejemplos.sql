@@ -6,6 +6,7 @@ values
 ('auditor');
 
 
+/* el tercer valor, el númerico varía según que tengamos en la tabla cargos*/
 INSERT INTO empleados(nombre, apellido, cargo) 
 values
 ('matias', 'molina', 2),
@@ -32,8 +33,8 @@ values
 ('segunda', 10),
 ('tercera', 15);
 
-/* LITERATURA */
 
+/* LITERATURA */
 INSERT INTO autores (nombre, apellido) 
 VALUES 
 ('Gabriel', 'García Márquez'),
@@ -50,6 +51,7 @@ VALUES
 ('Fantasía'),
 ('Suspenso');
 
+/* el valor númerico varía según que tengamos en la tabla generos*/
 INSERT INTO subgeneros (nombre, id_generoliterario)
 VALUES
 ('Realismo mágico', '2'),
@@ -59,6 +61,7 @@ VALUES
 ('Thriller psicológico', '5'),
 ('Espiritualidad y autoayuda', '2');
 
+/* arreglo de tabla, agregamos una columna*/
 ALTER TABLE ejemplares
 ADD id_libro INT;
 
@@ -105,6 +108,45 @@ Reseña: Paulo Coelho nos brinda una inspiradora historia sobre un joven pastor 
 Autor: Paulo Coelho
 Género: Ficción
 Subgénero: Espiritualidad y autoayuda
+
+*/
+
+
+
+/********************** 
+SANDBOX 
+**********************/ 
+
+/*
+SELECT 
+prestamos.id_prestamo,
+prestamos.id_libro,
+prestamos.id_socio,
+prestamos.id_empleado,
+prestamos.fecharetiro,
+
+libros.titulo,
+libros.autor,
+
+socios.nombre AS socio_nombre,
+socios.apellido AS socio_apellido,
+
+empleados.nombre AS empleado_nombre,
+empleados.apellido AS empleado_apellido
+
+FROM prestamos
+INNER JOIN libros ON prestamos.id_libro = libros.id_libro
+INNER JOIN socios ON prestamos.id_socio = socios.id_socio
+INNER JOIN empleados ON prestamos.id_empleado = empleados.id_empleado; */
+
+
+
+
+
+FROM libros
+INNER JOIN autores ON libros.autor = autores.id_autor
+INNER JOIN generosliterarios ON libros.genero = generosliterarios.id_generoliterario
+INNER JOIN subgeneros ON libros.genero = subgeneros.id_subgenero;
 
 
 
