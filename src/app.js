@@ -23,7 +23,7 @@ app.listen(port, () => {
 // Cargamos los middlewares midlewares
 //midlewares
 app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', 'https://frontend-c3xr8yvbo-matiasblobs-projects.vercel.app');
+    res.setHeader('Access-Control-Allow-Origin', 'https://frontend-sigma-sage.vercel.app');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
     next();
