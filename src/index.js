@@ -24,8 +24,8 @@ async function main() {
         await sequelize.sync({force:false});
         console.log('Base de datos conectada');
         // Podemos cambiar el puerto
-        app.listen(3000);
-        console.log("Servidor conectado en el puerto 3000");
+        app.listen(8080);
+        console.log("Servidor conectado en el puerto 8080");
 
 } catch (error) {
     console.error('');
