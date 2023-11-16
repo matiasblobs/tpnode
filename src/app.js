@@ -13,6 +13,13 @@ import clinicasRoutes from './routes/clinicas.routes.js';
 // Cargamos express en una constrante
 const app = express(); 
 
+ // Podemos cambiar el puerto
+       const port = process.env.PORT ?? 8080;
+
+app.listen(port, () => {
+  console.log(`App listening on port ${port}`);
+});
+
 // Cargamos los middlewares midlewares
 //midlewares
 app.use((req, res, next) => {
