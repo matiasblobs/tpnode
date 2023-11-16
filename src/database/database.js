@@ -5,4 +5,10 @@ import Sequelize from "sequelize";
 export const sequelize = new Sequelize("tpfinal", "fl0user", "KsN4tLl2CoDj", {
     host: "ep-sparkling-leaf-49395978.ap-southeast-1.aws.neon.fl0.io",
     dialect: "postgres",
+    dialectOptions: {
+        ssl: {
+            require: true,
+            rejectUnauthorized: false, // You may need to adjust this based on your server's SSL configuration
+        },
+    },
 });  
