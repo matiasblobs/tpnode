@@ -23,12 +23,7 @@ async function main() {
         // cuando tenemos definidos nuestros modelos de DataBase pasamos a force:false para que los datos se almacenen en la base de datos
         await sequelize.sync({force:false});
         console.log('Base de datos conectada');
-        // Podemos cambiar el puerto
-       const port = process.env.PORT ?? 8080;
-
-app.listen(port, () => {
-  console.log(`App listening on port ${port}`);
-});
+       
 
 } catch (error) {
     console.error('');
