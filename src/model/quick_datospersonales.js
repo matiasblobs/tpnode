@@ -1,0 +1,1 @@
+apellido: {           type: DataTypes.STRING    }
